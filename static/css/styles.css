@@ -350,10 +350,11 @@ img {
 
 .aside-footer a {
 	color: #fff;
-	height: 30px;
-	width: 30px;
+	height: 50px;
+	width: 50px;
+	font-size: 30px;
 	display: block;
-	line-height: 30px;
+	line-height: 50px;
 }
 
 

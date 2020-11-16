@@ -10,8 +10,8 @@ $(window).bind('scroll', function() {
     var elems = $('.scrollspy');
 
     elems.each(function(index) {
-        var elemTop 	= $(this).offset().top;
-        var elemBottom 	= elemTop + $(this).height();
+        var elemTop 	= $(this).offset().top - ($(this).height() / 3);
+        var elemBottom 	= elemTop + ($(this).height() / 3);
 
         if (currentTop >= elemTop && currentTop <= elemBottom) {
             var id 		= $(this).attr('id');
