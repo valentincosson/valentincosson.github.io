@@ -380,9 +380,7 @@ img {
 .about-avatar-details p {
 	display: inline-block;
 	color: #fff;
-	background: rgba(0, 0, 0, 0.05);
 	font-size: 14px;
-	border-radius: 14px;
 	padding: 5px 20px;
 	margin-top: 7px;
 }
