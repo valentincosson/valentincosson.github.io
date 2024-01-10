@@ -1,26 +1,37 @@
-$( ".nav-link" ).click(function() {
-    $('.nav-link').removeClass( 'active' );
-    $('.nav-link').removeClass( 'clicked' );
-    $(this).addClass('active').addClass('clicked');
-})
+document.addEventListener("DOMContentLoaded", function() {
+    // Smooth scrolling when clicking on a navigation link
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active', 'clicked'));
+            this.classList.add('active', 'clicked');
 
-$(window).bind('scroll', function() {
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            window.scrollTo({
+                top: targetSection.offsetTop,
+                behavior: 'smooth'
+            });
+        });
+    });
 
-    var currentTop = $(window).scrollTop();
-    var elems = $('.scrollspy');
+    // Highlighting the active link based on scroll position
+    window.addEventListener('scroll', function() {
+        const scrollPos = window.scrollY;
+        document.querySelectorAll('.scrollspy').forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
 
-    elems.each(function(index) {
-        var elemTop 	= $(this).offset().top - ($(this).height() / 3);
-        var elemBottom 	= elemTop + ($(this).height() / 3);
-
-        if (currentTop >= elemTop && currentTop <= elemBottom) {
-            var id 		= $(this).attr('id');
-            var navElem = $('a[href="#' + id + '"]');
-            if (!$('.nav-link').hasClass('clicked')) {
-                $('.nav-link').removeClass( 'active' );
-                navElem.addClass('active');
+            if (scrollPos >= sectionTop && scrollPos <= sectionTop + sectionHeight) {
+                document.querySelectorAll('.nav-link').forEach(nav => {
+                    nav.classList.remove('active');
+                    if (nav.getAttribute('href') === '#' + sectionId) {
+                        nav.classList.add('active');
+                    }
+                });
             }
-            $('.nav-link').removeClass( 'clicked' );
-        }
-    })
+        });
+        document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('clicked'));
+    });
 });
