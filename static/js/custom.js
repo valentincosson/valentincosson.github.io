@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
             window.scrollTo({
-                top: targetSection.offsetTop,
+                top: targetSection.offsetTop - 50,
                 behavior: 'smooth'
             });
         });
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const sectionHeight = section.offsetHeight;
             const sectionId = section.getAttribute('id');
 
-            if (scrollPos >= sectionTop && scrollPos <= sectionTop + sectionHeight) {
+            if (scrollPos >= sectionTop - 300 && scrollPos <= sectionTop + sectionHeight + 300) {
                 document.querySelectorAll('.nav-link').forEach(nav => {
                     nav.classList.remove('active');
                     if (nav.getAttribute('href') === '#' + sectionId) {
